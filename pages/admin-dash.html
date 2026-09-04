@@ -1,0 +1,361 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0"
+>
+<title>JCC Admin Dashboard</title>
+<link rel="stylesheet" href="../css/admin-dash.css">
+<script type="module" src="../js/admin-dash.js" defer></script>
+</head>
+<body>
+<!-- =====================================================
+     LOADING
+===================================================== -->
+<!-- DASHBOARD LOADING SCREEN -->
+<div id="loading" class="loading-screen">
+    <div class="loading-content">
+        <div class="loading-logo">
+            <img src="../images/logo.png" alt="JCC Logo">
+        </div>
+        <div class="loading-spinner"></div>
+        <h2>JCC Admin</h2>
+        <p>Verifying administrator access...</p>
+    </div>
+</div>
+<!-- =====================================================
+     CHESS BACKGROUND
+===================================================== -->
+<div class="chess-pattern"></div>
+<!-- =====================================================
+     APPLICATION
+===================================================== -->
+<main class="app">
+    <!-- =================================================
+         TOP BAR
+    ================================================= -->
+    <header class="topbar">
+        <div class="brand">
+            <div class="logo-piece">
+                <a href="../index.html"><img src="../images/logo.png" alt="JCC Logo"></a>
+            </div>
+            <div class="brand-text">
+                <small>
+                    Josephite Chess Club
+                </small>
+                <h1>
+                    Administration
+                </h1>
+            </div>
+        </div>
+        <div class="admin-user">
+            <div class="admin-info">
+                <small>
+                    Signed in as
+                </small>
+                <span id="adminEmail">
+                    Loading...
+                </span>
+            </div>
+            <button
+                class="logout-button"
+                id="logoutButton"
+            >
+                Logout
+            </button>
+        </div>
+    </header>
+    <!-- =================================================
+         WELCOME
+    ================================================= -->
+    <section class="welcome">
+        <small>
+            Control Center
+        </small>
+        <h2>
+            Welcome back, Admin.
+        </h2>
+        <p>
+            Manage the Josephite Chess Club
+            from one place.
+        </p>
+    </section>
+    <!-- =================================================
+         STATISTICS
+    ================================================= -->
+    <section class="stats-grid">
+        <div class="stat-card">
+            <div class="stat-icon">
+                ♟
+            </div>
+            <small>
+                Total General Members
+            </small>
+            <strong>
+                —
+            </strong>
+        </div>
+        <div class="stat-card">
+            <div class="stat-icon">
+                ♜
+            </div>
+            <small>
+                Total EC Members
+            </small>
+            <strong>
+                —
+            </strong>
+        </div>
+        <div class="stat-card">
+            <div class="stat-icon">
+                ♕
+            </div>
+            <small>
+                Total Tournament
+            </small>
+            <strong>
+                —
+            </strong>
+        </div>
+        <div class="stat-card">
+            <div class="stat-icon">
+                ♔
+            </div>
+            <small>
+                Upcoming Events
+            </small>
+            <strong id="upcomingTournamentName">
+                —
+            </strong>
+        </div>
+    </section>
+    <!-- =================================================
+         MAIN CONTENT
+    ================================================= -->
+    <section class="main-grid">
+        <!-- =============================================
+             QUICK ACTIONS
+        ============================================== -->
+        <div class="panel">
+            <div class="panel-header">
+                <h3>
+                    Quick Actions
+                </h3>
+                <span>
+                    Admin Tools
+                </span>
+            </div>
+            <div class="actions">
+                <button
+                    class="action"
+                    id="managePlayers"
+                >
+                    <div class="action-icon">
+                        ♟
+                    </div>
+                    <strong>
+                        Manage Member Database
+                    </strong>
+                    <small>
+                        Update and manage registered
+                        chess club members.
+                    </small>
+                </button>
+                <button
+                    class="action"
+                    id="manageTournaments"
+                >
+                    <div class="action-icon">
+                        ♜
+                    </div>
+                    <strong>
+                        Query Members
+                    </strong>
+                    <small>
+                        View and Sort All Club Members.
+                    </small>
+                </button>
+                <button
+                    class="action"
+                    id="manageMatches"
+                >
+                    <div class="action-icon">
+                        ♞
+                    </div>
+                    <strong>
+                        Manage Tournaments
+                    </strong>
+                    <small>
+                        Manage matches, competitions
+                        and results.
+                    </small>
+                </button>
+                <button
+                    class="action"
+                    id="websiteSettings"
+                >
+                    <div class="action-icon">
+                        ⚙
+                    </div>
+                    <strong>
+                        Website Settings
+                    </strong>
+                    <small>
+                        Configure JCC website
+                        content and settings.
+                    </small>
+                </button>
+            </div>
+        </div>
+        <!-- =============================================
+             SYSTEM STATUS
+        ============================================== -->
+        <div class="panel">
+            <div class="panel-header">
+                <h3>
+                    System Status
+                </h3>
+                <span>
+                    Live
+                </span>
+            </div>
+            <div class="status-content">
+                <div class="status-row">
+                    <span>
+                        Authentication
+                    </span>
+                    <div class="status-value">
+                        <div class="status-dot"></div>
+                        Connected
+                    </div>
+                </div>
+                <div class="status-row">
+                    <span>
+                        Firebase
+                    </span>
+                    <div class="status-value">
+                        <div class="status-dot"></div>
+                        Online
+                    </div>
+                </div>
+                <div class="status-row">
+                    <span>
+                        Admin Session
+                    </span>
+                    <div class="status-value">
+                        <div class="status-dot"></div>
+                        Active
+                    </div>
+                </div>
+                <div class="status-row">
+                    <span>
+                        Dashboard
+                    </span>
+                    <div class="status-value">
+                        <div class="status-dot"></div>
+                        Ready
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- =============================================
+             RECENT ACTIVITY
+        ============================================== -->
+        <div class="panel">
+            <div class="panel-header">
+                <h3>
+                    Recent Activity
+                </h3>
+                <span>
+                    Latest
+                </span>
+            </div>
+            <div class="activity-list">
+                <div class="activity">
+                    <div class="activity-dot"></div>
+                    <div class="activity-content">
+                        <strong>
+                            Admin dashboard initialized
+                        </strong>
+                        <small>
+                            Just now
+                        </small>
+                    </div>
+                </div>
+                <div class="activity">
+                    <div class="activity-dot"></div>
+                    <div class="activity-content">
+                        <strong>
+                            Firebase authentication connected
+                        </strong>
+                        <small>
+                            Current session
+                        </small>
+                    </div>
+                </div>
+                <div class="activity">
+                    <div class="activity-dot"></div>
+                    <div class="activity-content">
+                        <strong>
+                            System ready
+                        </strong>
+                        <small>
+                            Waiting for admin actions
+                        </small>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- =============================================
+             ADMIN NOTES
+        ============================================== -->
+        <div class="panel">
+            <div class="panel-header">
+                <h3>
+                    Admin Notes
+                </h3>
+                <span>
+                    JCC
+                </span>
+            </div>
+            <div class="status-content">
+                <div class="status-row">
+                    <span>
+                        Database
+                    </span>
+                    <div class="status-value">
+                        Firebase
+                    </div>
+                </div>
+                <div class="status-row">
+                    <span>
+                        Authentication
+                    </span>
+                    <div class="status-value">
+                        Email / Password
+                    </div>
+                </div>
+                <div class="status-row">
+                    <span>
+                        Access
+                    </span>
+                    <div class="status-value">
+                        Administrator
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- =================================================
+         FOOTER
+    ================================================= -->
+    <footer class="footer">
+        Josephite Chess Club
+        <span>•</span>
+        Administration Panel
+    </footer>
+</main>
+</body>
+</html>

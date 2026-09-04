@@ -1,0 +1,518 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+    <meta
+        name="description"
+        content="Official website of the Josephite Chess Club (JCC). Explore our members, events, achievements, tournaments, and chess community."
+    >
+    <title>Josephite Chess Club || JCC</title>
+    <link rel="stylesheet" href="css/style.css">
+    <script type="module" src="js/script.js" defer></script>
+</head>
+<body>
+    <!-- =====================================================
+         NAVBAR
+    ===================================================== -->
+    <nav class="navbar">
+        <a
+            href="#home"
+            class="logo"
+        >
+            <div class="logo-piece">
+                <img src="images/logo.png" alt="JCC Logo">
+            </div>
+            <div class="logo-text">
+                <strong>
+                    JCC
+                </strong>
+                <span>
+                    Josephite Chess Club
+                </span>
+            </div>
+        </a>
+        <div
+            class="nav-links"
+            id="navLinks"
+        >
+            <a href="#home">
+                Home
+            </a>
+            <a href="#about">
+                About
+            </a>
+            <a href="#achievements">
+                Achievements
+            </a>
+            <a href="#members">
+                Members
+            </a>
+            <a href="#events">
+                Events
+            </a>
+            <a
+                href="pages/admin.html"
+                class="admin-login"
+            >
+                Admin
+            </a>
+            <a
+                href="#join"
+                class="nav-join"
+            >
+                Join Us
+            </a>
+        </div>
+        <button
+            class="menu-btn"
+            id="menuBtn"
+            aria-label="Open navigation menu"
+            aria-expanded="false"
+        >
+            ☰
+        </button>
+    </nav>
+    <!-- =====================================================
+         HERO
+    ===================================================== -->
+    <section
+        class="hero"
+        id="home"
+    >
+        <div
+            class="chess-pattern"
+        ></div>
+        <div
+            class="hero-content"
+        >
+            <div class="hero-tag">
+                ♟ Josephite Chess Club
+            </div>
+            <h1>
+                Think.<br>
+                <span>
+                    Move. Conquer.
+                </span>
+            </h1>
+            <div class="typing">
+                We are
+                <span
+                    id="typingText"
+                ></span>
+                <span
+                    class="cursor"
+                ></span>
+            </div>
+            <div class="hero-buttons">
+                <a
+                    href="#about"
+                    class="btn btn-primary"
+                >
+                    Discover JCC
+                </a>
+                <a
+                    href="#achievements"
+                    class="btn btn-secondary"
+                >
+                    Our Achievements
+                </a>
+            </div>
+        </div>
+    </section>
+    <!-- =====================================================
+         ABOUT
+    ===================================================== -->
+    <section
+        class="about"
+        id="about"
+    >
+        <div
+            class="section-title reveal"
+        >
+            <small>
+                Who We Are
+            </small>
+            <h2>
+                The Gamers Behind<br>
+                the Game
+            </h2>
+        </div>
+        <div class="about-grid">
+            <div
+                class="about-text reveal"
+            >
+                <h3>
+                    More than just chess.
+                </h3>
+                <p>
+                    Josephite Chess Club is a community
+                    of students brought together by strategy,
+                    competition and the love of Chess.
+                    <br><br>
+                    Josephite Chess Club is one of the oldest
+                    and renowned club of St. Joseph Higher Secondery
+                    School Situated in Mohammadpur, Dhaka, Bangladesh.
+                    Students Here Strive For Exellence and Members Of the club Strive
+                    for <b>Checkmates.</b>
+                </p>
+            </div>
+            <div
+                class="quote-card reveal"
+            >
+                <div class="quote-piece">
+                    ♟
+                </div>
+                <p>
+                    "You must take your opponent into a deep dark
+                    forest where 2+2=5,
+                    and the path leading out is only wide
+                    enough for one."<br><br>— Mikhail Tal
+                </p>
+            </div>
+        </div>
+        <!-- =================================================
+             STATS
+        ================================================== -->
+        <div class="stats reveal">
+            <div class="stat">
+                <h3
+                    data-target="15"
+                >
+                    0
+                </h3>
+                <p>
+                    Tournaments
+                </p>
+            </div>
+            <div class="stat">
+                <h3
+                    data-target="10"
+                >
+                    0
+                </h3>
+                <p>
+                    Awards Won
+                </p>
+            </div>
+            <div class="stat">
+                <h3
+                    data-target="2"
+                >
+                    0
+                </h3>
+                <p>
+                    Inter competitions
+                </p>
+            </div>
+        </div>
+    </section>
+    <!-- =====================================================
+         ACHIEVEMENTS
+    ===================================================== -->
+    <section
+        id="achievements"
+    >
+        <div
+            class="section-title reveal"
+        >
+            <small>
+                Our Journey
+            </small>
+            <h2>
+                Achievements
+            </h2>
+        </div>
+        <div class="achievement-grid">
+            <article
+                class="achievement reveal"
+            >
+                <div
+                    class="achievement-icon"
+                >
+                    🏆
+                </div>
+                <h3>
+                    Hat-Trick Grandmaster Strike
+                </h3>
+                <p>
+                    Our Utmost Proud - 3 out of 5 Bangladeshi
+                    GMs Are The Members Of JCC. <br><br>
+                    <ul>
+                        <li>GM Niaz Murshed (1st)</li>
+                        <li>GM Ziaur Rahman (2nd)</li>
+                        <li>GM Reefat Bin-Sattar (3rd)</li>
+                    </ul>
+                </p>
+            </article>
+            <article
+                class="achievement reveal"
+            >
+                <div
+                    class="achievement-icon"
+                >
+                    ♛
+                </div>
+                <h3>
+                    Team Awards
+                </h3>
+                <p>
+                    Constantly Achieving Team Awards Throughout The
+                    Country. JCC Teams are made out of Perfect Combinations!
+                </p>
+            </article>
+            <article
+                class="achievement reveal"
+            >
+                <div
+                    class="achievement-icon"
+                >
+                    🥇
+                </div>
+                <h3>
+                    Multiple Winners
+                </h3>
+                <p>
+                    Our members continue to represent
+                    Josephite Chess Club across competitions, Both in
+                    Team and Individual Sportsmanship JCC is best!
+                </p>
+            </article>
+        </div>
+    </section>
+    <!-- =====================================================
+         MEMBERS
+    ===================================================== -->
+    <section
+        class="members"
+        id="members"
+    >
+        <div
+            class="section-title reveal"
+        >
+            <small>
+                The People Behind JCC
+            </small>
+            <h2>
+                Meet Our Team
+            </h2>
+        </div>
+        <div class="member-grid">
+            <!-- =================================================
+                 CHIEF MODERATOR
+            ================================================== -->
+            <article
+                class="member reveal"
+                tabindex="0"
+            >
+                <div class="member-content">
+                    <div class="member-photo">
+                        ♔
+                    </div>
+                    <h3>
+                        Chief Moderator
+                    </h3>
+                    <span>
+                        Abu Salhin Rafi
+                    </span>
+                </div>
+                <div
+                    class="member-preview"
+                    aria-hidden="true"
+                >
+                    <img
+                        src="images/chief-moderator.jpg"
+                        alt="Chief Moderator"
+                    >
+                </div>
+
+            </article>
+
+            <!-- =================================================
+                 PRESIDENT
+            ================================================== -->
+            <article
+                class="member reveal"
+                tabindex="0"
+            >
+                <div class="member-content">
+                    <div class="member-photo">
+                        ♕
+                    </div>
+                    <h3>
+                        Club President
+                    </h3>
+                    <span>
+                        Nabid Haque
+                    </span>
+                </div>
+                <div
+                    class="member-preview"
+                    aria-hidden="true"
+                >
+                    <img
+                        src="images/president.jpg"
+                        alt="Club President"
+                    >
+                </div>
+            </article>
+            
+
+            <!-- =================================================
+                 OTHER MODERATORS
+            ================================================== -->
+            <article
+                class="member reveal"
+                tabindex="0"
+            >
+                <div class="member-content">
+                    <div class="member-photo">
+                        ♖
+                    </div>
+                    <h3>
+                        Vice President
+                    </h3>
+                    <span>
+                        Nirjhor
+                    </span>
+                </div>
+                <div
+                    class="member-preview"
+                    aria-hidden="true"
+                >
+                    <img
+                        src="images/nirjhor.jpg"
+                        alt="Club President"
+                    >
+                </div>
+            </article>
+        </div>
+
+        <div class="members-more reveal">
+            <a
+                href="pages/members.html"
+                class="view-members-btn"
+                aria-label="View all JCC members"
+            >
+                <span>View All Members</span>
+                <span class="btn-arrow" aria-hidden="true">→</span>
+             </a>
+        </div>
+    </section>
+    <!-- =====================================================
+         EVENTS
+    ===================================================== -->
+    <section id="events">
+    <div class="section-title reveal">
+        <small>
+            What's Coming
+        </small>
+
+        <h2>
+            Upcoming Events
+        </h2>
+    </div>
+
+    <div class="achievement-grid" id="eventsGrid">
+        <!-- Events will be loaded from Firebase -->
+    </div>
+
+    <div class="past-events-button-container reveal">
+        <a href="pages/past-events.html" class="past-events-btn">
+            View Past Events
+            <span>→</span>
+        </a>
+    </div>
+</section>
+
+    <!-- =====================================================
+         JOIN
+    ===================================================== -->
+    <section
+        class="cta"
+        id="join"
+    >
+        <div
+            class="cta-box reveal"
+        >
+            <h2>
+                Your Move.
+            </h2>
+            <p>
+                The board is waiting.
+            </p>
+            <button
+                class="btn btn-primary join-modal-trigger"
+                type="button"
+                aria-haspopup="dialog"
+                aria-controls="joinModal"
+            >
+                Join Josephite Chess Club ♟
+            </button>
+        </div>
+    </section>
+
+    <div
+        class="join-modal"
+        id="joinModal"
+        role="dialog"
+        aria-modal="true"
+        aria-labelledby="joinModalTitle"
+        aria-hidden="true"
+    >
+        <div class="join-modal-backdrop" data-close-join-modal></div>
+        <div class="join-modal-panel" role="document">
+            <button
+                class="join-modal-close"
+                type="button"
+                aria-label="Close join options"
+                data-close-join-modal
+            >
+                ×
+            </button>
+            <div class="join-modal-heading">
+                <span>Josephite Chess Club</span>
+                <h2 id="joinModalTitle">Now Move A Piece</h2>
+                <p>Whether you are new to JCC or already part of the club, start here.</p>
+            </div>
+            <div class="join-options">
+                <a
+                    class="join-option join-option-primary"
+                    href="https://docs.google.com/forms/d/e/1FAIpQLSfZQvpHOUFqqX9aimfZJ78iCPKAmuPvCETKBwPQKIPWEEHXZw/viewform?usp=publish-editor"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                >
+                    <span class="join-option-icon" aria-hidden="true">♙</span>
+                    <h3>Register</h3>
+                    <p>New to JCC? Complete the registration form to join our chess community.</p>
+                    <span class="join-option-action">Register now <b aria-hidden="true">↗</b></span>
+                </a>
+                <button class="join-option" type="button" disabled>
+                    <span class="join-option-icon" aria-hidden="true">♜</span>
+                    <h3>Log in</h3>
+                    <p>Already a member? Sign in to access your JCC member area.</p>
+                    <span class="join-option-action">Coming soon</span>
+                </button>
+                <a
+                    class="join-option join-option-primary"
+                    href="https://www.chess.com/club/josephite-chess-club-jcc/join/1d34ed?utm_campaign=club_invite_link&utm_source=chesscom&utm_medium=copy"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                >
+                    <span class="join-option-icon" aria-hidden="true">♞</span>
+                    <h3>Join Chess.com Club</h3>
+                    <p>Play, follow club updates, and connect with fellow Josephite chess players.</p>
+                    <span class="join-option-action">Register now <b aria-hidden="true">↗</b></span>
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        © 2026 Josephite Chess Club — JCC
+    </footer>
+</body>
+</html>

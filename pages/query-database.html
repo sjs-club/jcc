@@ -1,0 +1,299 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>Query Members | JCC Admin</title>
+
+    <link
+        rel="stylesheet"
+        href="../css/query-database.css"
+    >
+
+    <script
+        type="module"
+        src="../js/query-database.js"
+        defer
+    ></script>
+</head>
+
+
+<body>
+
+    <main class="page-shell">
+
+        <header class="page-header">
+
+            <a
+                class="back-button"
+                href="admin-dash.html"
+            >
+                ← <span>Dashboard</span>
+            </a>
+
+            <div class="brand">
+
+                <div class="logo-piece">
+                    <a href="../index.html"><img src="../images/logo.png" alt="JCC Logo"></a>
+                </div>
+
+                <div>
+                    <p class="eyebrow">
+                        JCC ADMINISTRATION
+                    </p>
+
+                    <h1>
+                        Query member database
+                    </h1>
+                </div>
+
+            </div>
+
+            <button
+                id="signOutButton"
+                class="text-button"
+                type="button"
+            >
+                Sign out
+            </button>
+
+        </header>
+
+
+        <section
+            id="accessMessage"
+            class="access-message"
+            role="status"
+            aria-live="polite"
+        >
+            Checking administrator access…
+        </section>
+
+
+        <section
+            id="queryApp"
+            class="database-app"
+            hidden
+        >
+
+            <div class="database-toolbar">
+
+                <div>
+                    <p class="eyebrow">
+                        FIRESTORE COLLECTION · READ ONLY
+                    </p>
+
+                    <h2>
+                        Members
+                        <span
+                            id="resultCount"
+                            class="count-badge"
+                        >
+                            0
+                        </span>
+                    </h2>
+                </div>
+
+                <button
+                    id="refreshButton"
+                    class="secondary-button"
+                    type="button"
+                >
+                    ↻ Refresh
+                </button>
+
+            </div>
+
+
+            <div class="query-controls">
+
+                <label class="control-field search-control">
+
+                    <span>
+                        Search by
+                    </span>
+
+                    <div class="search-row">
+
+                        <select id="searchField">
+
+                            <option value="memberIndex">
+                                Index
+                            </option>
+
+                            <option value="fullName">
+                                Full name
+                            </option>
+
+                            <option value="studentClass">
+                                Class
+                            </option>
+
+                            <option value="section">
+                                Section
+                            </option>
+
+                            <option value="roll">
+                                Roll
+                            </option>
+
+                            <option value="memberType">
+                                Member type
+                            </option>
+
+                            <option value="chessRating">
+                                Chess rating
+                            </option>
+
+                            <option value="phone">
+                                Phone number
+                            </option>
+
+                            <option value="joinedAt">
+                                Date of joining
+                            </option>
+
+                        </select>
+
+
+                        <input
+                            id="searchInput"
+                            type="search"
+                            placeholder="Enter a value to search"
+                        >
+
+                    </div>
+
+                </label>
+
+
+                <label class="control-field">
+
+                    <span>
+                        Sort by
+                    </span>
+
+                    <select id="sortField">
+
+                        <option value="memberIndex">
+                            Index
+                        </option>
+
+                        <option value="fullName">
+                            Full name
+                        </option>
+
+                        <option value="studentClass">
+                            Class
+                        </option>
+
+                        <option value="section">
+                            Section
+                        </option>
+
+                        <option value="roll">
+                            Roll
+                        </option>
+
+                        <option value="memberType">
+                            Member type
+                        </option>
+
+                        <option value="chessRating">
+                            Chess rating
+                        </option>
+
+                        <option value="joinedAt">
+                            Date of joining
+                        </option>
+
+                    </select>
+
+                </label>
+
+
+                <label class="control-field">
+
+                    <span>
+                        Order
+                    </span>
+
+                    <select id="sortOrder">
+
+                        <option value="asc">
+                            Ascending
+                        </option>
+
+                        <option value="desc">
+                            Descending
+                        </option>
+
+                    </select>
+
+                </label>
+
+            </div>
+
+
+            <div class="table-card">
+
+                <div class="table-scroll">
+
+                    <table>
+
+                        <thead>
+
+                            <tr>
+                                <th>Index</th>
+                                <th>Full name</th>
+                                <th>Class</th>
+                                <th>Section</th>
+                                <th>Roll</th>
+                                <th>Member type</th>
+                                <th>Chess rating</th>
+                                <th>Phone number</th>
+                                <th>Date of joining</th>
+                            </tr>
+
+                        </thead>
+
+
+                        <tbody id="memberTableBody"></tbody>
+
+                    </table>
+
+                </div>
+
+
+                <div
+                    id="emptyState"
+                    class="empty-state"
+                    hidden
+                >
+
+                    <span>♙</span>
+
+                    <h3>
+                        No matching members
+                    </h3>
+
+                    <p>
+                        Try a different search value or field.
+                    </p>
+
+                </div>
+
+            </div>
+
+        </section>
+
+    </main>
+
+</body>
+
+</html>

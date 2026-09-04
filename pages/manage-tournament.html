@@ -1,0 +1,359 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<meta name="theme-color" content="#08090d">
+<title>Manage Tournaments — JCC Admin</title>
+
+<link rel="stylesheet" href="../css/manage-tournament.css">
+<script type="module" src="../js/manage-tournament.js" defer></script>
+
+</head>
+
+<body>
+
+<!-- Firebase auth gate: the page stays hidden until Firebase resolves auth. -->
+<div class="auth-gate" id="authGate">
+    <div class="loader-box">
+        <div class="loader-piece"><img src="../images/logo.png" alt="JCC Logo"></div>
+        <strong>Verifying admin access</strong>
+        <div class="spinner"></div>
+        <div class="auth-error" id="authError">Access denied. Redirecting...</div>
+    </div>
+</div>
+
+<nav class="navbar">
+    <a class="logo" href="admin-dash.html">
+        <div class="logo-piece"><img src="../images/logo.png" alt="JCC Logo"></div>
+        <div class="logo-text">
+            <strong>JCC</strong>
+            <span>Josephite Chess Club</span>
+        </div>
+    </a>
+
+    <div class="nav-links" id="navLinks">
+        <a href="admin-dash.html">Dashboard</a>
+        <a href="member-database.html">Database</a>
+        <a href="query-database.html">Query</a>
+        <a href="#">Web-Settings</a>
+        <a href="../index.html" class="nav-admin">Home</a>
+    </div>
+
+    <button class="menu-btn" id="menuBtn" aria-label="Open navigation">☰</button>
+</nav>
+
+<main class="page">
+    <section class="hero">
+        <div class="eyebrow">JCC Administration</div>
+        <h1>Tournament<br>Management.</h1>
+        <p>Create, monitor, edit and archive JCC events. Event data is stored in Database.</p>
+    </section>
+
+    <section class="dashboard-grid" aria-label="Tournament counts">
+        <div class="stat-card">
+            <div class="number" id="upcomingCount">0</div>
+            <div class="label">Upcoming events</div>
+        </div>
+        <div class="stat-card">
+            <div class="number" id="ongoingCount">0</div>
+            <div class="label">Ongoing events</div>
+        </div>
+        <div class="stat-card">
+            <div class="number" id="pastCount">0</div>
+            <div class="label">Past events</div>
+        </div>
+        <div class="stat-card">
+            <div class="number" id="totalCount">0</div>
+            <div class="label">Total events</div>
+        </div>
+    </section>
+
+    <section class="section" id="create">
+        <div class="section-heading">
+            <div>
+                <h2>Create an event</h2>
+                <p>Choose an event type. Templetes are shown below. Custom Event allows further event settings.</p>
+            </div>
+        </div>
+
+        <div class="type-grid">
+            <button class="type-card" id="weeklyBtn" type="button">
+                <span class="enabled-pill">Enabled</span>
+                <div class="type-icon">♟</div>
+                <h3>Weekly Tournament</h3>
+                <p>Regular JCC weekly chess tournament.</p>
+            </button>
+
+            <button class="type-card" type="button" disabled>
+                <span class="disabled-pill">Disabled</span>
+                <div class="type-icon">♜</div>
+                <h3>JCC Workshop</h3>
+                <p>Workshop and training event.</p>
+            </button>
+
+            <button class="type-card" type="button" disabled>
+                <span class="disabled-pill">Disabled</span>
+                <div class="type-icon">♛</div>
+                <h3>Intra Tournament</h3>
+                <p>Competition inside the club.</p>
+            </button>
+
+            <button class="type-card" type="button" disabled>
+                <span class="disabled-pill">Disabled</span>
+                <div class="type-icon">🏆</div>
+                <h3>Inter Tournament</h3>
+                <p>Competition against other institutions.</p>
+            </button>
+
+            <button class="type-card" type="button" disabled>
+                <span class="disabled-pill">Disabled</span>
+                <div class="type-icon">✦</div>
+                <h3>Create Custom Event</h3>
+                <p>Custom event builder — coming soon.</p>
+            </button>
+        </div>
+    </section>
+
+    <section class="event-section" id="upcoming">
+        <div class="section-heading">
+            <div>
+                <h2>Upcoming & ongoing</h2>
+                <p>Click an event to inspect its details.</p>
+            </div>
+        </div>
+        <div class="event-list" id="upcomingList"></div>
+    </section>
+
+    <section class="event-section" id="past">
+        <div class="section-heading">
+            <div>
+                <h2>Past events</h2>
+                <p>Completed events and their podium records.</p>
+            </div>
+        </div>
+        <div class="event-list" id="pastList"></div>
+    </section>
+</main>
+
+<!-- CREATE / EDIT -->
+<div class="modal" id="eventModal" aria-hidden="true">
+    <div class="modal-panel">
+        <div class="modal-head">
+            <div>
+                <h2 id="eventModalTitle">Create Weekly Tournament</h2>
+                <p>Set the schedule and event information. All fields marked with * are required.</p>
+            </div>
+            <button class="close-btn" type="button" data-close="eventModal">×</button>
+        </div>
+
+        <form id="eventForm">
+            <input type="hidden" id="editingId">
+
+            <div class="form-grid">
+                <div class="field full">
+                    <label for="eventName">Event name *</label>
+                    <input id="eventName" required maxlength="100" placeholder="JCC Weekly Tournament #99">
+                </div>
+
+                <div class="field">
+                    <label for="eventDate">Event date *</label>
+                    <input id="eventDate" type="date" required>
+                </div>
+
+                <div class="field">
+                    <label for="eventStart">Start time *</label>
+                    <input id="eventStart" type="time" required>
+                </div>
+
+                <div class="field">
+                    <label for="eventEnd">Approximate ending time *</label>
+                    <input id="eventEnd" type="time" required>
+                </div>
+
+                <div class="field">
+                    <label for="eventPlatform">Platform *</label>
+                    <select id="eventPlatform" required>
+                        <option value="">--Choose platform--</option>
+                        <option value="Chess.com">Chess.com</option>
+                        <option value="Lichess">Lichess</option>
+                        <option value="Chess24">Chess24</option>
+                        <option value="Google Meet">Google Meet</option>
+                        <option value="Physical venue">Physical venue</option>
+                        <option value="Other">Other</option>
+                    </select>
+                </div>
+
+                <div class="field full" id="otherPlatformWrap" style="display:none;">
+                    <label for="otherPlatform">Platform / venue name</label>
+                    <input id="otherPlatform" maxlength="100" placeholder="Platform or Venue..">
+                </div>
+
+                <div class="field">
+                    <label for="eventLocation">Venue / room</label>
+                    <input id="eventLocation" maxlength="120" placeholder="Room or online..">
+                </div>
+
+                <div class="field">
+                    <label for="eventOrganizer">Organizer</label>
+                    <input id="eventOrganizer" maxlength="100" placeholder="Committee..">
+                </div>
+
+                <div class="field">
+                    <label for="eventFormat">Format</label>
+                    <input id="eventFormat" maxlength="80" placeholder="Blitz • 5+0">
+                </div>
+
+                <div class="field">
+                    <label for="eventParticipants">Expected participants</label>
+                    <input id="eventParticipants" type="number" min="1" max="1000" placeholder="1 to 1000">
+                </div>
+
+                <div class= "field full">
+                    <label for="eventLink">Tournament Link</label>
+                    <input
+                        type="url"
+                        id="eventLink"
+                        placeholder="https://chess.com/..."
+                    >
+                </div>
+
+                <div class="field full">
+                    <label for="eventNotes">Notes / announcement</label>
+                    <textarea id="eventNotes" maxlength="1000" placeholder="Anything admins should remember about this event..."></textarea>
+                </div>
+            </div>
+
+            <div class="modal-actions">
+                <button class="btn" type="button" data-close="eventModal">Cancel</button>
+                <button class="btn primary" type="submit" id="saveEventBtn">Save tournament</button>
+            </div>
+        </form>
+    </div>
+</div>
+
+<!-- EVENT DETAILS -->
+<div class="modal" id="detailsModal" aria-hidden="true">
+    <div class="modal-panel">
+        <div class="modal-head">
+            <div>
+                <h2 id="detailsTitle">Event details</h2>
+                <p id="detailsSubtitle"></p>
+            </div>
+            <button class="close-btn" type="button" data-close="detailsModal">×</button>
+        </div>
+
+        <div id="detailsBody"></div>
+        <div class="modal-actions" id="detailsActions"></div>
+    </div>
+</div>
+
+<!-- COMPLETE -->
+<div class="modal" id="completeModal" aria-hidden="true">
+    <div class="modal-panel">
+        <div class="modal-head">
+            <div>
+                <h2>Finish event</h2>
+                <p>Confirm the event is finished, then record the podium. All the fields marked * are mandatory.</p>
+            </div>
+            <button class="close-btn" type="button" data-close="completeModal">×</button>
+        </div>
+
+        <form id="completeForm">
+            <input type="hidden" id="completeId">
+
+            <div class="form-grid">
+                <div class="field full">
+                    <label>1st place name *</label>
+                    <input id="firstName" required maxlength="100" placeholder="Winner's name">
+                </div>
+                <div class="field">
+                    <label>Institution</label>
+                    <input id="firstInstitution" maxlength="100" placeholder="St. Joseph..">
+                </div>
+                <div class="field">
+                    <label>Class</label>
+                    <input id="firstClass" maxlength="50" placeholder="..XI">
+                </div>
+                <div class="field">
+                    <label>Section</label>
+                    <input id="firstSection" maxlength="30" placeholder="..Jupiter">
+                </div>
+                <div class="field">
+                    <label>Roll number</label>
+                    <input id="firstRoll" maxlength="30" placeholder="..56">
+                </div>
+
+                <div class="field full">
+                    <label>2nd place name</label>
+                    <input id="secondName" maxlength="100" placeholder="Runners Up Name">
+                </div>
+                <div class="field">
+                    <label>Institution</label>
+                    <input id="secondInstitution" maxlength="100" placeholder="St. Joseph..">
+                </div>
+                <div class="field">
+                    <label>Class</label>
+                    <input id="secondClass" maxlength="50" placeholder="..XI">
+                </div>
+                <div class="field">
+                    <label>Section</label>
+                    <input id="secondSection" maxlength="30" placeholder="..Jupiter">
+                </div>
+                <div class="field">
+                    <label>Roll number</label>
+                    <input id="secondRoll" maxlength="30" placeholder="..56">
+                </div>
+
+                <div class="field full">
+                    <label>3rd place name</label>
+                    <input id="thirdName" maxlength="100" placeholder="Bronze Obtainer..">
+                </div>
+                <div class="field">
+                    <label>Institution</label>
+                    <input id="thirdInstitution" maxlength="100" placeholder="St. Joseph..">
+                </div>
+                <div class="field">
+                    <label>Class</label>
+                    <input id="thirdClass" maxlength="50" placeholder="..XI">
+                </div>
+                <div class="field">
+                    <label>Section</label>
+                    <input id="thirdSection" maxlength="30" placeholder="..Jupiter">
+                </div>
+                <div class="field">
+                    <label>Roll number</label>
+                    <input id="thirdRoll" maxlength="30" placeholder="..56">
+                </div>
+            </div>
+
+            <div class="modal-actions">
+                <button class="btn" type="button" data-close="completeModal">Cancel</button>
+                <button class="btn success" type="submit">Mark as complete</button>
+            </div>
+        </form>
+    </div>
+</div>
+
+<!-- CONFIRM -->
+<div class="modal" id="confirmModal" aria-hidden="true">
+    <div class="modal-panel" style="max-width:480px;">
+        <div class="modal-head">
+            <div>
+                <h2 id="confirmTitle">Confirm action</h2>
+                <p id="confirmSubtitle"></p>
+            </div>
+            <button class="close-btn" type="button" data-close="confirmModal">×</button>
+        </div>
+        <p class="confirm-text" id="confirmText"></p>
+        <div class="modal-actions">
+            <button class="btn" type="button" data-close="confirmModal">Cancel</button>
+            <button class="btn primary" type="button" id="confirmActionBtn">Confirm</button>
+        </div>
+    </div>
+</div>
+
+<div id="toast" role="status"></div>
+
+</body>
+</html>

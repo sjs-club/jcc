@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>Past Events — Josephite Chess Club</title>
+
+    <link rel="stylesheet" href="../css/past-events.css">
+    <script type="module" src="../js/past-events.js" defer></script>
+</head>
+
+<body>
+
+    <!-- =====================================================
+         NAVBAR
+         ===================================================== -->
+
+    <header class="site-header">
+        <nav class="navbar" aria-label="Primary navigation">
+
+            <a
+                class="logo"
+                href="../index.html#home"
+                aria-label="Josephite Chess Club home"
+            >
+                <span class="logo-piece">
+                    <img src="../images/logo.png" alt="">
+                </span>
+
+                <span class="logo-text">
+                    <strong>JCC</strong>
+                    <span>Josephite Chess Club</span>
+                </span>
+            </a>
+
+            <button
+                class="menu-btn"
+                type="button"
+                aria-expanded="false"
+                aria-controls="primary-menu"
+            >
+                <span class="menu-icon" aria-hidden="true">☰</span>
+                <span class="sr-only">Open navigation menu</span>
+            </button>
+
+            <div class="nav-links" id="primary-menu">
+                <a href="../index.html#home">Home</a>
+                <a href="../index.html#about">About</a>
+                <a href="../index.html#achievements">Achievements</a>
+                <a href="../index.html#members">Members</a>
+                <a class="active" href="past-events.html" aria-current="page">
+                    Events
+                </a>
+                <a class="admin-login" href="admin.html">Admin</a>
+                <a class="nav-join" href="../index.html#join">Join Us</a>
+            </div>
+
+        </nav>
+    </header>
+
+
+    <!-- =====================================================
+         MAIN
+         ===================================================== -->
+
+    <main>
+
+        <section class="past-events-page">
+
+            <div class="page-intro">
+                <p class="eyebrow">JCC Tournament Archive</p>
+
+                <h1>Past Events</h1>
+
+                <p>
+                    A record of tournaments completed by
+                    Josephite Chess Club.
+                </p>
+            </div>
+
+
+            <!-- Firebase events will appear here -->
+
+            <div
+                class="past-events-grid"
+                id="pastEventsGrid"
+            >
+                <div class="events-state">
+                    Loading past events...
+                </div>
+            </div>
+
+        </section>
+
+    </main>
+
+</body>
+</html>
