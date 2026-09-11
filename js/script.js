@@ -663,11 +663,11 @@ if (joinModal && joinModalTrigger) {
 
         const words = [
 
-            "Strategists.",
-            "Competitors.",
-            "Chess Players.",
-            "Josephites.",
-            "'The JCC'."
+            "Strategists",
+            "Competitors",
+            "Chess Players",
+            "Josephites",
+            "'The JCC'"
 
         ];
 
