@@ -429,3 +429,11 @@ td {
 .table-scroll::-webkit-scrollbar-thumb:hover {
     background: #969696;
 }
+
+/* TEMPORARY TEST: force text selection across the page */
+html,
+body,
+body * {
+    -webkit-user-select: text !important;
+    user-select: text !important;
+}
