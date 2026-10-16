@@ -14,7 +14,7 @@
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    /*user-select: none;*/
+    /*user-select: none; --> Temporary Selection is Enabled AT the bottom Of the css File*/
     -webkit-tap-highlight-color: transparent;
 }
 
@@ -430,7 +430,7 @@ td {
     background: #969696;
 }
 
-/* TEMPORARY TEST: force text selection across the page */
+/* Temporary Selection Enabled HEre. */
 html,
 body,
 body * {
